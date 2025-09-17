@@ -30,6 +30,16 @@ public class NoteController {
 		public ResponseEntity<List<NotesEntity>> readNotes () {
 			return new ResponseEntity<List<NotesEntity>>(notesRepository.findAll(), HttpStatus.OK);
 		}
+		
+		@PostMapping("/createnote")
+		public ResponseEntity<NotesEntity> newNote(@RequestBody NotesEntity notesEntity){
+			
+			return new ResponseEntity<NotesEntity>(notesRepository.save(notesEntity), HttpStatus.CREATED);
+		}
+		
+		
+		
+		
 	}
 
 
