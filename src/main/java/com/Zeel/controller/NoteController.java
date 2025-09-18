@@ -37,7 +37,11 @@ public class NoteController {
 			return new ResponseEntity<NotesEntity>(notesRepository.save(notesEntity), HttpStatus.CREATED);
 		}
 		
-		
+		@GetMapping("/notedetails/{noteId}")
+		public ResponseEntity<NotesEntity> noteDetails(@PathVariable Integer noteId){
+			
+			return new ResponseEntity<NotesEntity>(notesRepository.findById(noteId).get(), HttpStatus.OK);
+		}
 		
 		
 	}
