@@ -43,6 +43,13 @@ public class NoteController {
 			return new ResponseEntity<NotesEntity>(notesRepository.findById(noteId).get(), HttpStatus.OK);
 		}
 		
+		@DeleteMapping("/notedelete/{noteId}")
+		public ResponseEntity<NotesEntity> noteDelete(@PathVariable Integer noteId){
+			
+				notesRepository.deleteById(noteId);
+			return new ResponseEntity<NotesEntity>(HttpStatus.NO_CONTENT);
+		}
+		
 		
 	}
 
