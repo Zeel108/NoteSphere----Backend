@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
 
 import com.Zeel.entity.NotesEntity;
 import com.Zeel.repository.NotesRepository;
@@ -49,6 +50,15 @@ public class NoteController {
 				notesRepository.deleteById(noteId);
 			return new ResponseEntity<NotesEntity>(HttpStatus.NO_CONTENT);
 		}
+		
+		@PutMapping("/noteupdate/{noteId}")
+		public ResponseEntity<NotesEntity> noteUpdate(@PathVariable Integer noteId, @RequestBody NotesEntity notesEntity){
+				notesEntity.setNoteId(noteId);
+				
+				return new ResponseEntity<NotesEntity>(notesRepository.save(notesEntity), HttpStatus.OK);
+		}
+		
+		
 		
 		
 	}
